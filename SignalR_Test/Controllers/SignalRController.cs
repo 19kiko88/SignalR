@@ -19,9 +19,9 @@ namespace SignalR_Test.Controllers
 
         public IActionResult Subscribe()
         {
-            if (!_timer.IsTimerStarted) 
-            {//是否在連線時限60秒內
-                _timer.PrepareTimer(() => _hub.Clients.All.SendAsync("GetRandomNumber", GetRandom()));
+            if (!_timer.IsTimerStarted)
+            {//是否在連線時限60秒內，是的話就調用Hub Method [HubMethodGetRandomNumber]
+                _timer.PrepareTimer(() => _hub.Clients.All.SendAsync("HubMethodGetRandomNumber", GetRandom()));
             }
                 
             return Ok(new { Message = "Request Completed" });
